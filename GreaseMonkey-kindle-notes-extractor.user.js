@@ -7,6 +7,9 @@
 // @include https://read.amazon.com/notebook/*
 // @include https://read.amazon.com/notebook?*
 // @include https://read.amazon.com/notebook
+// @include https://lire.amazon.fr/notebook/*
+// @include https://lire.amazon.fr/notebook?*
+// @include https://lire.amazon.fr/notebook
 // @updateURL https://raw.githubusercontent.com/yanncharlou/GreaseMonkeyKindleNotesExtractor/main/GreaseMonkey-kindle-notes-extractor.user.js
 // @downloadURL https://raw.githubusercontent.com/yanncharlou/GreaseMonkeyKindleNotesExtractor/main/GreaseMonkey-kindle-notes-extractor.user.js
 // ==/UserScript==
@@ -73,10 +76,10 @@
         //console.log(node.textContent);
         //var rx = /Location: (\d*)/;
         //var loc = rx.exec(node.textContent);
-        var loc = /Location:\s*([\d,]*)/g.exec(node.textContent);
+        var loc = /(Location|Emplacement):\s*([\d,]*)/g.exec(node.textContent);
         console.dir(loc);
-        if(loc.length > 0){
-          return loc[1].replace(',','');
+        if(loc && loc.length > 1){
+          return loc[2].replace(',','');
         }
       }
 
